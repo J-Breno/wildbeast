@@ -9,7 +9,7 @@ blockquote {
 }
 
 img {
-  max-width: 100%;
+  width: 100%;
   display: block;
   border-radius: 5px;
 }
@@ -33,6 +33,28 @@ a {
     "header header header"
     "sidenav content anuncios"
     "footer footer footer";
+}
+
+@media (max-width: 1200px) {
+  .estrutura {
+    grid-template-areas:
+      "header header header"
+      "sidenav content content"
+      "sidenav anuncios anuncios"
+      "footer footer footer";
+  }
+}
+
+@media (max-width: 760px) {
+  .estrutura {
+    grid-template-columns: 100%;
+    grid-template-areas:
+      "header"
+      "sidenav"
+      "content"
+      "anuncios"
+      "footer";
+  }
 }
 
 .header {
@@ -67,6 +89,24 @@ a {
   margin-left: 30px;
 }
 
+@media (max-width: 760px) {
+  .header {
+    grid-template-columns: auto;
+  }
+
+  .logo {
+    margin-bottom: 20px;
+  }
+
+  .header nav a {
+    font-size: 1em;
+  }
+
+  .header li + li {
+    margin-left: 10px;
+  }
+}
+
 .header nav a:hover {
   background: rgba(0, 0, 0, 0.5);
 }
@@ -93,6 +133,49 @@ a {
   background: #b07dfb;
 }
 
+@keyframes seta {
+  from {
+    right: 30px;
+  }
+  to {
+    right: 20px;
+  }
+}
+
+@media (max-width: 760px) {
+  .sidenav {
+    position: relative;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+
+  .sidenav::after {
+    content: "→";
+    position: absolute;
+    top: 5px;
+    right: 30px;
+    color: rgba(0, 0, 0, 0.3);
+    animation: seta 0.5s ease-in 0s infinite alternate;
+  }
+
+  .sidenav ul {
+    display: flex;
+  }
+
+  .sidenav ul li {
+    flex: 1 0 60px; /* flex basis é que não quer que diminua mais do que os px que voce informar, nesses caso 60px*/
+  }
+
+  .sidenav {
+    padding: 0 30px;
+  }
+
+  .sidenav ul li a {
+    margin: 30px 30px 30px 0;
+  }
+}
+
 .content {
   grid-area: content;
   max-width: 900px;
@@ -101,6 +184,12 @@ a {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
+}
+
+@media (max-width: 600px) {
+  .content {
+    grid-template-columns: auto;
+  }
 }
 
 .col-wide {
@@ -120,11 +209,10 @@ p {
   font-size: 1.2em;
   line-height: 1.6;
   letter-spacing: -0.005em;
-  color: rgba(0,0,0,.7);
-
+  color: rgba(0, 0, 0, 0.7);
 }
 
-.informacoes p + p{ 
+.informacoes p + p {
   margin-top: 30px;
 }
 
@@ -136,13 +224,11 @@ p {
   font-size: 3.75em;
   line-height: 1;
   font-weight: 700;
-
 }
 
 .titulo span {
   font-size: 0.875em;
   font-style: italic;
-
 }
 
 .caracteristicas {
@@ -155,7 +241,7 @@ p {
   text-align: center;
   background: linear-gradient(135deg, #8844ee, #b07dfb);
   border-radius: 5px;
-  box-shadow: 5px 5px 15px 0 rgba(44,44,44,0.15);
+  box-shadow: 5px 5px 15px 0 rgba(44, 44, 44, 0.15);
   position: relative;
 }
 
@@ -169,7 +255,6 @@ p {
 }
 
 .numero {
-
   font-size: 3em;
   line-height: 1;
   margin: 10px auto;
@@ -178,10 +263,9 @@ p {
 .rotulo {
   background: white;
   border-radius: 0 0 5px 5px;
- padding: 5px 0;
- position: relative;
- top: 2px;
-
+  padding: 5px 0;
+  position: relative;
+  top: 2px;
 }
 
 .destaque {
@@ -190,30 +274,29 @@ p {
   max-width: 16em;
 }
 
-.citacao, .atributos {
+.citacao,
+.atributos {
   align-self: start;
   padding: 30px;
   border-radius: 5px;
-  box-shadow: 5px 5px 15px 0px rgba(44,44,44,0.15);
+  box-shadow: 5px 5px 15px 0px rgba(44, 44, 44, 0.15);
   background: linear-gradient(125deg, #8844ee, #b07dfb);
-
 }
 
 .citacao p {
   font-size: 1.5;
-font-style: italic;
-text-align: center;
-margin: 0 auto;
-color: white;
-max-width: 500px;
+  font-style: italic;
+  text-align: center;
+  margin: 0 auto;
+  color: white;
+  max-width: 500px;
 }
 
 .atributos li {
   color: white;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-size: 1.125em;
   padding: 15px;
-
 }
 
 .atributos li + li {
@@ -227,7 +310,10 @@ max-width: 500px;
   align-content: start;
   padding: 30px;
   gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
+
+
 
 .footer {
   grid-area: footer;
